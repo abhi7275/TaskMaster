@@ -2,7 +2,7 @@
 
 TaskMaster is a command-line task management tool that allows you to manage your tasks efficiently.
 
-![Alt Text](TaskMaster.jpeg)
+<img src="./TaskMaster/TaskMaster.jpeg" width="300" height="200">
 
 ## Features
 
