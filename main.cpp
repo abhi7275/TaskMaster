@@ -1,20 +1,20 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "algo.h" // Include the header file for function declarations
+#include "algo.h" // Include the header file for your algorithm functions
 
 int main() {
     std::vector<Task> tasks; // Vector to store tasks
 
     while (true) {
+        // Display the main menu options
         std::cout << "TaskMaster - Command Menu" << std::endl;
         std::cout << "1. Add Task" << std::endl;
         std::cout << "2. Edit Task" << std::endl;
-        std::cout << "3. Delete Task" << std::endl;
-        std::cout << "4. List Tasks" << std::endl;
-        std::cout << "5. Search Tasks" << std::endl;
-        std::cout << "6. Set Reminder" << std::endl;
-        std::cout << "7. Quit" << std::endl;
+        std::cout << "3. List Tasks" << std::endl;
+        std::cout << "4. Search Tasks" << std::endl;
+        std::cout << "5. Set Reminder" << std::endl;
+        std::cout << "6. Quit" << std::endl;
 
         int choice;
         std::cout << "Enter your choice: ";
@@ -24,82 +24,74 @@ int main() {
             case 1: {
                 // Add Task
                 Task task;
-                std::cout << "Enter Task ID: ";
-                int taskId;
-                std::cin >> taskId;
-                std::cout << "Enter Task Name: ";
-                std::string name;
-                std::cin >> name;
-                std::cout << "Enter Task Description: ";
-                std::string description;
-                std::cin >> description;
-                std::cout << "Enter Task Category: ";
-                std::string category;
-                std::cin >> category;
-                std::cout << "Enter Task Priority: ";
-                int priority;
-                std::cin >> priority;
-                std::cout << "Enter Task Completion Status (0 for incomplete, 1 for complete): ";
-                bool completed;
-                std::cin >> completed;
-                std::cout << "Enter Task Due Date (YYYY-MM-DD): ";
-                std::string dueDate;
-                std::cin >> dueDate;
+                std::cout << "Enter task details:" << std::endl;
+                std::cout << "Name: ";
+                std::cin.ignore(); // Consume the newline character left in the input buffer
+                std::getline(std::cin, task.name);
+                std::cout << "Description: ";
+                std::getline(std::cin, task.description);
+                std::cout << "Due Date (YYYY-MM-DD): ";
+                std::cin >> task.dueDate;
+                std::cout << "Priority: ";
+                std::cin >> task.priority;
 
-                // Create the task and add it to the vector
-                Task task(taskId, name, description, category, priority, completed, dueDate);
+                // Call the addTask function to add the task to the vector
                 addTask(task);
                 break;
             }
             case 2: {
                 // Edit Task
                 int taskId;
-                std::cout << "Enter Task ID to Edit: ";
+                std::cout << "Enter the task ID to edit: ";
                 std::cin >> taskId;
                 std::string newName, newDescription;
-                std::cout << "Enter New Task Name: ";
-                std::cin >> newName;
-                std::cout << "Enter New Task Description: ";
-                std::cin >> newDescription;
+                std::cout << "Enter new name: ";
+                std::cin.ignore();
+                std::getline(std::cin, newName);
+                std::cout << "Enter new description: ";
+                std::getline(std::cin, newDescription);
+
+                // Call the editTask function to edit the task
                 editTask(taskId, newName, newDescription);
                 break;
             }
             case 3: {
-                // Delete Task
-                int taskId;
-                std::cout << "Enter Task ID to Delete: ";
-                std::cin >> taskId;
-                deleteTask(taskId);
-                break;
-            }
-            case 4: {
                 // List Tasks
                 listTasks();
                 break;
             }
-            case 5: {
+            case 4: {
                 // Search Tasks
                 std::string keyword;
-                std::cout << "Enter Keyword to Search: ";
-                std::cin >> keyword;
+                std::cout << "Enter a keyword to search for tasks: ";
+                std::cin.ignore();
+                std::getline(std::cin, keyword);
+
+                // Call the searchTasks function to search for tasks
                 std::vector<Task> matchingTasks = searchTasks(keyword);
-                std::cout << "Matching tasks for keyword '" << keyword << "':" << std::endl;
-                for (const auto& task : matchingTasks) {
-                    std::cout << "ID: " << task.id << ", Name: " << task.name << ", Description: " << task.description << std::endl;
+                if (matchingTasks.empty()) {
+                    std::cout << "No matching tasks found." << std::endl;
+                } else {
+                    std::cout << "Matching tasks:" << std::endl;
+                    for (const Task& task : matchingTasks) {
+                        std::cout << "ID: " << task.id << ", Name: " << task.name << ", Description: " << task.description << std::endl;
+                    }
                 }
                 break;
             }
-            case 6: {
+            case 5: {
                 // Set Reminder
                 int taskId, minutesBefore;
-                std::cout << "Enter Task ID for Reminder: ";
+                std::cout << "Enter the task ID for which to set a reminder: ";
                 std::cin >> taskId;
-                std::cout << "Enter Minutes Before Reminder: ";
+                std::cout << "Enter the number of minutes before the due date for the reminder: ";
                 std::cin >> minutesBefore;
+
+                // Call the setReminder function to set a reminder for the task
                 setReminder(taskId, minutesBefore);
                 break;
             }
-            case 7: {
+            case 6: {
                 // Quit the program
                 std::cout << "Exiting TaskMaster. Goodbye!" << std::endl;
                 return 0;
