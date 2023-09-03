@@ -23,13 +23,14 @@ To get started with TaskMaster, follow these steps:
 
     shell
 
-g++ main.cpp algo.cpp -o taskmaster
+2. Compile the source code:
+ ```shell
+ g++ main.cpp algo.cpp -o taskmaster
 
-Run the application:
+3. Run the application:
 
-shell
-
-    ./taskmaster
+```shell
+./taskmaster
 
 Usage
 
