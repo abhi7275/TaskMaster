@@ -19,18 +19,14 @@ To get started with TaskMaster, follow these steps:
    ```shell
    git clone https://github.com/abhi7275/TaskMaster.git
 
-    Compile the source code:
-
-    shell
-
 2. Compile the source code:
- ```shell
- g++ main.cpp algo.cpp -o taskmaster
+   ```shell
+   g++ main.cpp algo.cpp -o taskmaster
 
 3. Run the application:
 
-```shell
-./taskmaster
+   ```shell
+   ./taskmaster
 
 Usage
 
