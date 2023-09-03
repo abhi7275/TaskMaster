@@ -1,0 +1,73 @@
+TaskMaster Project Documentation
+Introduction
+
+The TaskMaster project is a command-line task management tool that allows users to add, edit, list, search for tasks, set reminders, and quit the application.
+Table of Contents
+
+    Installation
+    Usage
+    Project Structure
+    Features
+    Common Interview Questions
+    License
+
+Installation
+
+To run the TaskMaster project on your local machine, follow these steps:
+
+    Clone the project from GitHub: git clone https://github.com/abhi7275/TaskMaster.git
+    Navigate to the project directory: cd TaskMaster
+    Compile the source code: g++ -c main.cpp -o main.o
+    Compile the algorithm code: g++ -c algo.cpp -o algo.o
+    Link the object files: g++ main.o algo.o -o taskmaster
+    Run the application: ./taskmaster
+
+Usage
+
+The TaskMaster application provides a command-line menu with the following options:
+
+    Add Task: Allows users to add a new task, providing details such as name, description, due date, priority, and completion status.
+
+    Edit Task: Enables users to edit the details of an existing task by specifying its ID.
+
+    List Tasks: Lists all tasks currently stored in the application.
+
+    Search Tasks: Searches for tasks based on a keyword in the task's name, description, or category.
+
+    Set Reminder: Allows users to set a reminder for a specific task, specifying the number of minutes before the due date.
+
+    Quit: Exits the TaskMaster application.
+
+Project Structure
+
+The project is structured as follows:
+
+    main.cpp: Contains the main program, menu, and user interaction logic.
+    algo.cpp: Contains the core logic for adding, editing, listing, searching, and setting reminders for tasks.
+    algo.h: Header file defining function prototypes and the Task structure.
+    README.md: Project documentation.
+    LICENSE: License information.
+
+Features
+Implemented Features
+
+    Adding new tasks with details such as name, description, due date, priority, and completion status.
+    Editing existing tasks by specifying the task ID.
+    Listing all tasks stored in the application.
+    Searching for tasks based on a keyword in task names, descriptions, or categories.
+    Setting reminders for tasks to trigger at a specified time before the due date.
+
+Future Improvements
+
+    Task recurrence feature to support recurring tasks.
+    Graphical user interface (GUI) for a more user-friendly experience.
+    Support for different date and time formats.
+    Data persistence to save tasks between application sessions.
+    Priority-based sorting and filtering of tasks.
+
+
+License
+
+This project is open-source and is distributed under the MIT License. See the LICENSE file for details.
+
+Feel free to customize this documentation to suit your specific project and requirements. Additionally, you can expand on the interview questions section to include more technical or project-specific questions if needed.
