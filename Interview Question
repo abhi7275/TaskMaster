@@ -1,0 +1,174 @@
+Common Interview Questions
+
+Here are some common interview questions related to the TaskMaster project:
+
+    1. Explain the purpose of the TaskMaster project?
+
+    The TaskMaster project is a command-line task management tool designed to help users organize their tasks and manage their time effectively. Its purpose is to provide a simple and intuitive interface for users to add, edit, list, search for tasks, set reminders, and track their progress.
+
+    2. How do you add a new task using the TaskMaster application?
+
+    To add a new task in TaskMaster, you select the "Add Task" option from the command menu. You'll be prompted to provide details for the new task, including its name, description, due date, priority, and completion status. Once you enter these details, the task is added to the list of tasks.
+
+    3. Describe the structure of the project and the role of each source file?
+
+    The project consists of the following source files:
+        main.cpp: This file contains the main program logic, including the command menu and user interaction.
+        algo.cpp: It contains the core logic for managing tasks, such as adding, editing, listing, searching, and setting reminders.
+        algo.h: This header file defines function prototypes and the Task structure.
+        README.md: Project documentation.
+        LICENSE: License information.
+
+    4. What are some of the key features implemented in the TaskMaster application?
+
+    Key features of TaskMaster include:
+        Adding tasks with details.
+        Editing existing tasks.
+        Listing all tasks.
+        Searching for tasks based on keywords.
+        Setting reminders for tasks.
+
+    5. What improvements or additional features could be added to enhance the project?
+
+    Potential improvements and additional features include task recurrence, a graphical user interface (GUI), support for different date and time formats, data persistence to save tasks between sessions, and priority-based sorting and filtering of tasks.
+
+    6. Explain how the reminder functionality works in TaskMaster?
+
+    The reminder functionality allows users to set reminders for specific tasks. When a reminder is set, TaskMaster calculates the time when the reminder should trigger based on the due date and the specified time interval (in minutes) before the due date. It then waits for this duration using a sleep function. When the reminder time arrives, TaskMaster displays a message indicating that the task is due soon.
+
+    7. What open-source license did you choose for this project, and why?
+
+    This project is distributed under the MIT License. The MIT License is chosen because it allows users to use, modify, and distribute the software freely, as long as they include the original license notice. It encourages collaboration and open-source contributions.
+
+    8. Can you describe the flow of the main program in main.cpp?
+
+    The main program in main.cpp starts by displaying a command menu with options to add, edit, list, search, set reminders, or quit. It then reads the user's choice and calls the corresponding function from algo.cpp. This loop continues until the user chooses to quit.
+
+    9. How does the TaskMaster application handle task data? Is there any data persistence implemented?
+
+    TaskMaster manages task data in memory during the application's runtime. It does not implement data persistence, so task data is not saved between sessions. This means that once the application is closed, all task data is lost.
+
+    10. What challenges did you face during the development of this project, and how did you overcome them?
+
+    During the development of TaskMaster, challenges included handling date and time operations, managing user input validation, and structuring the code for modularity. These challenges were addressed through careful design, testing, and research on C++ libraries for date and time operations. Additionally, user-friendly error messages and input validation were implemented to enhance the user experience.
+    Data Structures:
+Another More technical question
+1. Question: Why was a std::vector chosen to store tasks in TaskMaster?
+
+Answer: A std::vector was chosen because it provides dynamic array-like behavior with automatic resizing. This allows for efficient insertion and deletion of tasks, which is important in a task management application. However, vector resizing can be costly for large datasets.
+
+2. Question: How does TaskMaster sort tasks by priority?
+
+Answer: TaskMaster uses a std::priority_queue data structure with a custom PriorityComparator struct to sort tasks by priority. The PriorityComparator provides the comparison logic for tasks based on their priority values. This priority queue ensures that tasks are automatically sorted when added or edited.
+a. Followup question to improve the complexity:
+Using merge sort for sorting tasks in TaskMaster is a valid option and could improve sorting efficiency in certain scenarios. Merge sort has a time complexity of O(N log N), which is generally more efficient than other sorting algorithms like bubble sort or insertion sort (which have O(N^2) time complexity) for larger datasets.
+
+Here's how you could implement merge sort for sorting tasks in TaskMaster:
+
+    Create a custom comparator function (similar to PriorityComparator for the priority queue) to compare tasks based on their priority values.
+
+    When a new task is added or edited, insert it into a temporary vector that maintains sorted order using merge sort. This would involve merging the new task into the existing sorted vector.
+
+    When listing tasks or displaying the task list, use the sorted vector generated by merge sort for display purposes.
+
+While merge sort can be more efficient than other sorting algorithms, it's essential to consider the trade-offs:
+
+Pros:
+
+    Merge sort has a consistent O(N log N) time complexity.
+    It's a stable sort, which means it maintains the relative order of equal elements.
+
+Cons:
+
+    Merge sort requires additional memory for merging, which might not be suitable for large datasets if memory is a concern.
+    It might be overkill for small datasets, and other simpler algorithms like insertion sort could perform adequately.
+
+Whether to use merge sort or not depends on the specific requirements and constraints of your TaskMaster application. If you anticipate working with a large number of tasks and want consistent sorting performance, merge sort could be a beneficial choice. However, for small task lists, the performance gain might not be significant compared to simpler sorting methods.
+
+3. Question: How does TaskMaster search for tasks based on a keyword?
+
+Answer: Task searching in TaskMaster involves iterating through all tasks and checking if the provided keyword exists in the task name, description, or category. This searching process has a time complexity of O(N) since it examines each task once.
+a. Can we use any other search technique like Binary Search 
+Answer Binary search is not typically used for searching within a list of tasks based on keywords, descriptions, or categories. Binary search is specifically designed for sorted data, where you can quickly determine whether a particular element exists in the sorted list.
+
+In the case of searching tasks based on keywords, descriptions, or categories, a binary search won't be suitable because the tasks may not be sorted in any specific order that allows binary search. Therefore, you should continue to use a linear search (e.g., iterating through the list of tasks) to find matching tasks based on non-sorted attributes like keywords, descriptions, or categories.
+
+However, if you want to optimize the search process for specific attributes (e.g., searching for tasks by ID, assuming IDs are sorted), you can consider using binary search on sorted attributes. But for general searches by keywords, descriptions, or categories, a linear search is more appropriate.
+4. Question: How does the reminder functionality work in TaskMaster?
+
+Answer: The reminder logic calculates the time when a reminder should be triggered by subtracting the specified minutes before the due date from the due date's timestamp. TaskMaster then waits for this duration and displays the reminder. It uses the C++ chrono library for time calculations.
+
+5. Question: How does TaskMaster handle input validation and error messages?
+
+Answer: TaskMaster validates user input to ensure it meets required criteria. For instance, it checks that task names are not empty, due dates are in the correct format, and priority values are within a valid range. User input is sanitized to prevent potential issues. User-friendly error messages are generated and displayed when input validation fails or when tasks cannot be found.
+
+6. Question: Does TaskMaster use multi-threading for reminders?
+
+Answer: No, TaskMaster uses a single-threaded approach for simplicity. It waits for reminders in the main thread, and the user interacts with the program through the same thread. A multi-threaded approach could be explored in future versions to improve responsiveness.
+
+7. Question: How does TaskMaster handle date and time operations?
+
+Answer: TaskMaster uses the parseDate function to convert a date string in the format "YYYY-MM-DD" into a std::tm struct. It calculates the duration until a reminder needs to be triggered by subtracting the current time from the reminder time, both represented as std::chrono::system_clock::time_point instances.
+
+8. Question: How does TaskMaster edit task details?
+
+Answer: When editing a task, TaskMaster identifies the task to be edited by matching the provided task ID with the ID of tasks in the vector. Once the task is found, its details, such as name and description, are updated.
+
+9. Question: How is TaskMaster's code organized for modularity?
+
+Answer: TaskMaster's code is organized into multiple source files (main.cpp, algo.cpp, algo.h) to promote modularity and maintainability. The separation of logic into algo.cpp and algo.h allows for easier code management and reuse.
+
+10. Question: What is a potential improvement for TaskMaster related to data persistence?
+Answer To implement data persistence, TaskMaster could save task data to a file or a database. This would enable users to access their task list across sessions and devices. Libraries like SQLite could be used for database storage.
+
+priority Queue implementation
+#include <iostream>
+#include <string>
+#include <vector>
+#include <queue>
+struct Task {
+    int id;
+    std::string name;
+    std::string description;
+    std::string category;
+    bool completed;
+    std::string dueDate;
+    int priority;  // Add a priority field
+};
+struct PriorityComparator {
+    bool operator()(const Task& task1, const Task& task2) const {
+        return task1.priority > task2.priority;  // Higher priority tasks come first
+    }
+};
+std::priority_queue<Task, std::vector<Task>, PriorityComparator> taskPriorityQueue;
+
+Task newTask;
+// Set other task fields (id, name, description, etc.)
+newTask.priority = /* Set the priority value */;
+taskPriorityQueue.push(newTask);
+while (!taskPriorityQueue.empty()) {
+    Task task = taskPriorityQueue.top();  // Get the highest priority task
+    taskPriorityQueue.pop();  // Remove the task from the queue
+    // Display task information
+}
+
+Certainly! A PriorityComparator typically compares tasks based on their priority, where tasks with higher priority come first. Here's a pseudocode for the PriorityComparator:
+
+
+function PriorityComparator(task1, task2):
+    if task1.priority > task2.priority:
+        return 1  # task1 has higher priority
+    else if task1.priority < task2.priority:
+        return -1  # task2 has higher priority
+    else:
+        return 0  # Both tasks have the same priority
+
+# Example usage:
+task1 = {id: 1, name: "Task 1", priority: 2}
+task2 = {id: 2, name: "Task 2", priority: 3}
+result = PriorityComparator(task1, task2)
+# The result will be -1, indicating that task2 has higher priority than task1.
+
+In this pseudocode, PriorityComparator takes two tasks, task1 and task2, as input and compares their priorities. It returns a positive value if task1 has higher priority, a negative value if task2 has higher priority, and zero if they have the same priority.
+
+You can use this comparator to sort tasks based on their priority when needed, such as when using a data structure like a priority queue or when displaying tasks in order of priority.
